@@ -16,8 +16,8 @@ EXCHANGE_URL = 'https://api-invest.tinkoff.ru/openapi'
 
 class Base_api(object):
     def __init__(self, token, env=SANDBOX):
-        self.token = token
         self.env = env
+        self.__token = token
         self.__base_url = self.__get_base_url(env)
 
     @property
@@ -35,15 +35,15 @@ class Base_api(object):
         return SANDBOX_URL if env == SANDBOX else EXCHANGE_URL
     
     def __get_auth_header(self, token=None):
-        return {'Authorization': 'Bearer {0}'.format(token or self.token)}
+        return {'Authorization': 'Bearer {0}'.format(token or self.__token)}
 
-    def post(self, endpoint, json=None, headers=None):
+    def _post(self, endpoint, params=None, json=None, headers=None):
         url = self.__base_url + endpoint
-        response = requests.post(url, json=json, headers=headers or self.__get_auth_header())
+        response = requests.post(url, json=json, params=params, headers=headers or self.__get_auth_header())
         REPORT.debug('POST response from <{0}>: {1}'.format(url, response.json()))
         return response.json()
 
-    def get(self, endpoint, params=None, headers=None):
+    def _get(self, endpoint, params=None, headers=None):
         url = self.__base_url + endpoint
         response = requests.get(url, params=params, headers=headers or self.__get_auth_header())
         REPORT.debug('GET response from <{0}>: {1}'.format(url, response.json()))

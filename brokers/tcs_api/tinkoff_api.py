@@ -7,6 +7,7 @@ from . import base_api
 from .market import Market
 from .portfolio import Portfolio
 from .sandbox import Sandbox
+from .orders import Orders
 
 
 class Tinkoff_api():
@@ -14,3 +15,5 @@ class Tinkoff_api():
         self.market = Market(token, env)
         self.portfolio = Portfolio(token, env)
         self.sandbox = Sandbox(token, env)
+        self.sandbox = Sandbox(token, env)
+        self.orders = Orders(token, env)
