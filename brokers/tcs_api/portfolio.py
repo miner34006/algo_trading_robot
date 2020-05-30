@@ -11,8 +11,18 @@ class Portfolio(base_api.Base_api):
         super(Portfolio, self).__init__(token, env)
 
     def get_portfolio(self):
+        """ Function to get current asssets in portfolio
+
+        :return: current assets in portfolio
+        :rtype: dict
+        """
         return self._get(self._base)
 
     def get_portfolio_currencises(self):
+        """ Function to get portfolio currencises
+
+        :return: portfolio currencises
+        :rtype: dict
+        """
         endpoint = '{0}/{1}'.format(self._base, 'currencies')
         return self._get(endpoint)

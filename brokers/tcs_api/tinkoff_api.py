@@ -11,6 +11,8 @@ from .orders import Orders
 
 
 class Tinkoff_api():
+    """ Represintation of Tinkoff API
+    """
     def __init__(self, token, env=base_api.SANDBOX):
         self.market = Market(token, env)
         self.portfolio = Portfolio(token, env)
