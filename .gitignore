@@ -1,0 +1,6 @@
+# python executables
+*.pyc
+
+# dirs
+venv
+.vscode
