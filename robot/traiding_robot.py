@@ -16,7 +16,7 @@ if __name__ == "__main__":
     from brokers.tcs_broker import Tcs_broker
     from api.tcs_api.base_api import SANDBOX
 
-    token = 't.F8LHaLNli7Nb_XeB1CzD55Rh3PCNT3ibV4dKiO4FMvAi9XfJ1M4glvuUe12r0MhLXtSZhDYPLeukSVZbSxp1Ww'
+    token = os.environ.get('API_TOKEN')
     broker = Tcs_broker(token, SANDBOX)
 
     robot = Traiding_robot(broker, None)
