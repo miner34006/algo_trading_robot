@@ -40,3 +40,26 @@ class Market(base_api.Base_api):
         """
         endpoint = '{0}/{1}'.format(self._base, 'search/by-ticker')
         return self._get(endpoint, params={'ticker': ticker})
+
+    def get_market_candles(self, figi, from_datetime, to_datetime, interval):
+        """ Function to get historical market candles
+
+        :param figi: stock figi
+        :type figi: str
+        :param from_datetime: from date time value
+        :type from_datetime: str
+        :param to_datetime: to date time value
+        :type to_datetime: str
+        :param interval: candle interval
+        :type interval: str
+        :return: historical candle data
+        :rtype: dict
+        """
+        endpoint = '{0}/{1}'.format(self._base, 'candles')
+        params = {
+            'figi': figi,
+            'from': from_datetime,
+            'to': to_datetime,
+            'interval': interval
+        }
+        return self._get(endpoint, params=params)

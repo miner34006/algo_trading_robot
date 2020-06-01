@@ -6,7 +6,7 @@ handler.setFormatter(formatter)
 
 root_logger = logging.getLogger()
 root_logger.addHandler(handler)
-root_logger.setLevel(logging.DEBUG)
+root_logger.setLevel(logging.INFO)
 
 
 def get_logger(module_name):
