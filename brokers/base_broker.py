@@ -10,8 +10,22 @@ class Base_broker():
 
     @abstractmethod
     def buy(self, ticker, amount):
+        """ Function to buy assert on stock exchange
+
+        :param ticker: ticker of the assert
+        :type ticker: str
+        :param amount: amount of assert to buy
+        :type amount: int
+        """
         pass
         
     @abstractmethod
     def sell(self, ticker, amount):
+        """ Function to buy assert on stock exchange
+
+        :param ticker: ticker of the assert
+        :type ticker: str
+        :param amount: amount of assert to sell
+        :type amount: int
+        """
         pass
