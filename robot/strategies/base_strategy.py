@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys
 import os
 sys.path.append(os.environ.get('ENVPATH', '/Users/miner34006/Documents/python/algo_bot'))
@@ -6,6 +8,11 @@ import operator
 from abc import ABCMeta, abstractmethod
 
 import numpy as np
+
+from utils.logger import get_logger
+
+
+REPORT = get_logger(__name__)
 
 
 class Base_strategy():
@@ -61,6 +68,8 @@ class Base_strategy():
 
         :param historical_data: historical data from api
         :type historical_data: list
+        :return: strategy has buy signal
+        :rtype: bool
         """
         pass
         
@@ -70,14 +79,18 @@ class Base_strategy():
 
         :param historical_data: historical data from api
         :type historical_data: list
+        :return: strategy has sell signal
+        :rtype: bool
         """
         pass
     
     @abstractmethod
-    def back_test_strategy(self, historical_data, lots=1):
+    def back_test_strategy(self, historical_data):
         """ Function to test strategy on hostorical data
 
         :param historical_data: historical data from api
         :type historical_data: list
-        """
+        :return: back test results
+        :rtype: backtest.Backtest
+        """        
         pass
