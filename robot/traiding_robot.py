@@ -64,7 +64,7 @@ class Traiding_robot(object):
             #     self.broker.sell(ticker, amount=lots)
             time.sleep(sleep_time)
 
-    def test_startegy(self, ticker, from_datetime, to_datetime, interval, lots=1, strategy=None):
+    def test_startegy(self, ticker, from_datetime, to_datetime, interval, lots=1, strategy=None, print_results=True):
         """ Function to test strategy
 
         :param ticker: ticker for testing
@@ -79,10 +79,16 @@ class Traiding_robot(object):
         :type lots: int, optional
         :param strategy: strategy to test
         :type strategy: base_strategy.Base_strategy
+        :param print_results: print testing results
+        :type print_results: bool
         :return: testing results
-        :rtype: dict
+        :rtype: backtest.Backtest
         """
         strategy = strategy or self.strategy
         historical_data = self.get_historical_data(ticker, from_datetime, to_datetime, interval)
-        return strategy.back_test_strategy(historical_data, lots=lots)
+        backtest = strategy.back_test_strategy(historical_data)
+        if print_results:
+            backtest.print_results()
+        return backtest
+
     
